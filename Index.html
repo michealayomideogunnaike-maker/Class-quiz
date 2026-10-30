@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Class Quiz</title>
+</head>
+
+<body>
+
+    <h1>CLASS QUIZ</h1>
+
+    <p>Welcome to the class quiz.</p>
+
+    <label for="pupilName">Enter your full name:</label>
+
+    <br><br>
+
+    <input
+        type="text"
+        id="pupilName"
+        placeholder="Enter your name"
+    >
+
+    <br><br>
+
+    <button onclick="startQuiz()">Start Quiz</button>
+
+    <script>
+
+        function startQuiz() {
+
+            const name =
+                document.getElementById("pupilName").value.trim();
+
+            if (name === "") {
+
+                alert("Please enter your name.");
+                return;
+
+            }
+
+            alert("Welcome, " + name + "!");
+
+        }
+
+    </script>
+
+</body>
+
+          </html>
