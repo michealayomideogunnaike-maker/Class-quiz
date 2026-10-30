@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Test</title>
+</head>
+
+<body>
+
+    <h1>QUIZ TEST</h1>
+
+    <p>What is 2 + 2?</p>
+
+    <label>
+        <input type="radio" name="answer" value="3">
+        3
+    </label>
+
+    <br>
+
+    <label>
+        <input type="radio" name="answer" value="4">
+        4
+    </label>
+
+    <br>
+
+    <label>
+        <input type="radio" name="answer" value="5">
+        5
+    </label>
+
+    <br><br>
+
+    <button onclick="checkAnswer()">Submit Answer</button>
+
+    <p id="result"></p>
+
+    <script>
+
+        function checkAnswer() {
+
+            const answer =
+                document.querySelector('input[name="answer"]:checked');
+
+            if (!answer) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            if (answer.value === "4") {
+                document.getElementById("result").textContent =
+                    "Correct! 🎉";
+            } else {
+                document.getElementById("result").textContent =
+                    "Wrong answer.";
+            }
+
+        }
+
+    </script>
+
+</body>
+
+      </html>
