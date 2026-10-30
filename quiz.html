@@ -12,40 +12,132 @@
 
     <h1>CLASS QUIZ</h1>
 
-    <p>Question 1 of 5</p>
+    <p id="questionNumber">Question 1 of 5</p>
 
-    <h2>What is the capital of Nigeria?</h2>
+    <h2 id="questionText"></h2>
 
-    <label>
-        <input type="radio" name="answer">
-        Lagos
-    </label>
+    <div id="answers"></div>
 
     <br>
 
-    <label>
-        <input type="radio" name="answer">
-        Abuja
-    </label>
+    <button onclick="nextQuestion()">Next Question</button>
 
-    <br>
 
-    <label>
-        <input type="radio" name="answer">
-        Kano
-    </label>
+    <script>
 
-    <br>
+        let currentQuestion = 0;
+        let score = 0;
 
-    <label>
-        <input type="radio" name="answer">
-        Ibadan
-    </label>
+        const questions = [
 
-    <br><br>
+            {
+                question: "What is the capital of Nigeria?",
+                answers: ["Lagos", "Abuja", "Kano", "Ibadan"],
+                correct: "Abuja"
+            },
 
-    <button>Next Question</button>
+            {
+                question: "Which of these is a Nigerian state?",
+                answers: ["Ghana", "Lagos", "London", "Accra"],
+                correct: "Lagos"
+            },
+
+            {
+                question: "How many days are in a week?",
+                answers: ["5", "6", "7", "8"],
+                correct: "7"
+            },
+
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: ["Earth", "Mars", "Jupiter", "Venus"],
+                correct: "Mars"
+            },
+
+            {
+                question: "What is 5 + 5?",
+                answers: ["8", "9", "10", "11"],
+                correct: "10"
+            }
+
+        ];
+
+
+        function showQuestion() {
+
+            const question = questions[currentQuestion];
+
+            document.getElementById("questionNumber").textContent =
+                "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+            document.getElementById("questionText").textContent =
+                question.question;
+
+            let answersHTML = "";
+
+            question.answers.forEach(function(answer) {
+
+                answersHTML += `
+                    <label>
+                        <input type="radio" name="answer" value="${answer}">
+                        ${answer}
+                    </label>
+
+                    <br>
+                `;
+
+            });
+
+            document.getElementById("answers").innerHTML = answersHTML;
+        }
+
+
+        function nextQuestion() {
+
+            const selectedAnswer =
+                document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedAnswer) {
+
+                alert("Please select an answer.");
+
+                return;
+            }
+
+
+            if (selectedAnswer.value === questions[currentQuestion].correct) {
+
+                score++;
+
+            }
+
+
+            currentQuestion++;
+
+
+            if (currentQuestion === questions.length) {
+
+                document.body.innerHTML = `
+                    <h1>QUIZ COMPLETED!</h1>
+
+                    <h2>Your Score: ${score} / ${questions.length}</h2>
+
+                    <p>Thank you for taking the quiz.</p>
+                `;
+
+                return;
+            }
+
+
+            showQuestion();
+
+        }
+
+
+        showQuestion();
+
+    </script>
 
 </body>
 
-  </html>
+</html>
